@@ -1,0 +1,45 @@
+---
+- name: Deploy Skydive agents
+  hosts: agent
+  gather_facts: no
+  tasks:
+#    - name: Add LLDP multicast addresses
+#      script: ./addmcast.sh
+    - name: Create directories
+      file:
+        name: "{{ item }}"
+        state: directory
+      with_items:
+        - /etc/skydive/agent/
+        - /var/log/skydive/agent/
+    - name: Create configuration file
+      template:
+        src: ./templates/agent.j2
+        dest: /etc/skydive/agent/skydive.conf
+    - name: Run agent
+      docker_container:
+        name: visualizer_agent
+        image: 10.240.201.50:8890/visualizer/skydive
+        pull: yes
+        network_mode: host
+        mounts: 
+          - type: bind
+            source: /etc/skydive/agent
+            target: /etc/skydive
+          - type: bind
+            source: /var/log/skydive/agent
+            target: /var/log/skydive
+          - type: bind
+            source: /etc/localtime
+            target: /etc/localtime
+            propagation: rprivate
+          - type: bind
+            source: /var/run
+            target: /var/run
+            propagation: shared
+        volumes:
+          - /proc:/host/proc:ro
+        command: "/root/skydive agent -c /etc/skydive/skydive.conf"
+        privileged: yes
+        state: started
+        restart: yes

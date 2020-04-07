@@ -1,0 +1,13 @@
+---
+- name: Ansible playbook
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Stop all
+      docker_container:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - visualizer_analyzer
+        - visualizer_agent
+      ignore_errors: yes

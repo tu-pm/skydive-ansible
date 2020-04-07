@@ -1,0 +1,24 @@
+http:
+  ws:
+    ping_delay: 5
+    pong_timeout: 10
+    bulk_maxmsgs: 200
+    bulk_maxdelay: 5
+    queue_size: 15000
+logging:
+  level: INFO
+  backends:
+    - file
+  file:
+    path: /var/log/skydive/skydive-analyzer.log
+analyzer:
+  topology:
+    probes:
+{% for probe in analyzer_probes %}
+      -  {{ probe }}
+{% endfor %}
+{% if "snmp" in analyzer_probes %}
+    snmp:
+      community: public
+      interval: 300
+{% endif %}
