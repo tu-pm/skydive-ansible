@@ -2,7 +2,7 @@
 - name: Generate configuration file
   template:
     src: analyzer.conf.j2
-    dest: "{{ config_dir }}/skydive.yml"
+    dest: "{{ config_dir }}/analyzer/skydive.yml"
 - name: Run analyzer
   docker_container:
     name: skydive_analyzer

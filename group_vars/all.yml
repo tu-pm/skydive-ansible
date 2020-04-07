@@ -16,7 +16,7 @@ snmp_community: "public"
 snmp_polling_interval: 300
 
 # Openstack Keystone authentication
-keystone_auth_url: ""
+keystone_auth_url: "http://10.60.17.231:5000"
 keystone_tenant_name: "admin"
 keystone_region_name: "RegionOne"
 keystone_domain_name: "Default"

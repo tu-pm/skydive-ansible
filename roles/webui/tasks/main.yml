@@ -4,5 +4,6 @@
     name: skydive_ui
     image: "{{ skydive_ui_image }}"
     pull: yes
+    network_mode: host
     state: started
     restart: yes

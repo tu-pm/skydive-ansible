@@ -19,6 +19,6 @@ analyzer:
 {% endfor %}
 {% if "snmp" in analyzer_probes %}
     snmp:
-    community: {{ snmp_community }}
-    interval: {{ snmp_polling_interval }}
+      community: {{ snmp_community }}
+      interval: {{ snmp_polling_interval }}
 {% endif %}

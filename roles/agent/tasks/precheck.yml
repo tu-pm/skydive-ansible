@@ -8,23 +8,23 @@
     - "{{ log_dir }}/agent/"
 - name: Add LLDP multicast addresses
   script: addmcast.sh
-  when: "lldp" in agent_probes
+  when: "'lldp' in agent_probes"
 - pause:
     prompt: "OpenStack User"
   register: username
   when:
-    - "neutron" in agent_probes
+    - "'neutron' in agent_probes"
     - openstack_password_prompt|bool
 - pause:
     prompt: "Password"
     echo: no
   register: password
   when:
-    - "neutron" in agent_probes
+    - "'neutron' in agent_probes"
     - openstack_password_prompt|bool
 - set_fact:
     keystone_username: "{{ username.user_input }}"
     keystone_password: "{{ password.user_input }}"
   when:
-    - "neutron" in agent_probes
+    - "'neutron' in agent_probes"
     - openstack_password_prompt|bool
