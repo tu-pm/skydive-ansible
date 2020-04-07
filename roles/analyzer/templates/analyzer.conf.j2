@@ -10,7 +10,7 @@ logging:
   backends:
     - file
   file:
-    path: /var/log/skydive/skydive-analyzer.log
+  path: "{{ log_dir }}/skydive-analyzer.log"
 analyzer:
   topology:
     probes:
@@ -19,6 +19,6 @@ analyzer:
 {% endfor %}
 {% if "snmp" in analyzer_probes %}
     snmp:
-      community: public
-      interval: 300
+    community: {{ snmp_community }}
+    interval: {{ snmp_polling_interval }}
 {% endif %}

@@ -1,0 +1,18 @@
+---
+- name: Install Skydive Analyzer
+  hosts: analyzer
+  gather_facts: no
+  roles:
+    - { role: analyzer, tags: analyzer }
+
+- name: Install Skydive Agent
+  hosts: agent
+  gather_facts: no
+  roles:
+    - { role: agent, tags: agent }
+
+- name: Install Skydive Webui
+  hosts: webui
+  gather_facts: no
+  roles:
+    - { role: webui, tags: webui }

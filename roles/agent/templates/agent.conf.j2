@@ -1,0 +1,30 @@
+agent:
+  topology:
+    probes:
+{% for probe in agent_probes %}
+      -  {{ probe }}
+{% endfor %}
+{% if "neutron" in agent_probes %}
+    neutron:
+      auth_url: "{{ keystone_auth_url }}"
+      username: "{{ keystone_username }}"
+      password: "{{ keystone_password }}"
+      tenant_name: "{{ keystone_tenant_name }}"
+      region_name: "{{ keystone_region_name }}"
+      domain_name: "{{ keystone_domain_name }}"
+      ssl_insecure: false
+{% endif %}
+{% if "docker" in agent_probes %}
+    docker:
+      proc_mount: "{{ docker_proc_mount }}"
+{% endif %}
+analyzers:
+{% for host in groups["analyzer"] %}
+  -  {{ host }}:{{ analyzer_port }}
+{% endfor %}
+logging:
+  level: "{{ log_level }}"
+  backends:
+    - file
+  file:
+    path: "{{ log_dir }}/skydive-agent.log"

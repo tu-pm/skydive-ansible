@@ -1,0 +1,8 @@
+---
+- name: Run webui
+  docker_container:
+    name: skydive_ui
+    image: "{{ skydive_ui_image }}"
+    pull: yes
+    state: started
+    restart: yes

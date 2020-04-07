@@ -1,0 +1,32 @@
+---
+- name: Generate configuration file
+  template:
+    src: agent.conf.j2
+    dest: "{{ config_dir }}/skydive.yml"
+- name: Run agent
+  docker_container:
+    name: skydive_agent
+    image: "{{ skydive_image }}"
+    pull: yes
+    network_mode: host
+    mounts:
+      - type: bind
+        source: "{{ config_dir }}/agent/"
+        target: "{{ config_dir }}"
+      - type: bind
+        source: "{{ log_dir }}/agent"
+        target: "{{ log_dir }}"
+      - type: bind
+        source: /etc/localtime
+        target: /etc/localtime
+        propagation: rprivate
+      - type: bind
+        source: /var/run
+        target: /var/run
+        propagation: shared
+    volumes:
+      - /proc:/host/proc:ro
+    command: "/root/skydive agent"
+    privileged: yes
+    state: started
+    restart: yes

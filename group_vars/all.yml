@@ -1,0 +1,23 @@
+---
+config_dir: "/etc/skydive"
+log_dir: "/var/log/skydive"
+log_level: "INFO"
+skydive_image: 10.240.201.50:8890/visualizer/skydive
+skydive_ui_image: 10.240.201.50:8890/visualizer/skydive_ui
+
+# Analyzer Configuration
+analyzer_port: 8304
+
+# Docker Configuration
+docker_proc_mount: "/host/proc"
+
+# SNMP Configuration
+snmp_community: "public"
+snmp_polling_interval: 300
+
+# Openstack Keystone authentication
+keystone_auth_url: ""
+keystone_tenant_name: "admin"
+keystone_region_name: "RegionOne"
+keystone_domain_name: "Default"
+openstack_password_prompt: "no"

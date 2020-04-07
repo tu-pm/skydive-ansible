@@ -1,0 +1,22 @@
+---
+- name: Generate configuration file
+  template:
+    src: analyzer.conf.j2
+    dest: "{{ config_dir }}/skydive.yml"
+- name: Run analyzer
+  docker_container:
+    name: skydive_analyzer
+    image: "{{ skydive_image }}"
+    pull: yes
+    network_mode: host
+    mounts:
+      - type: bind
+        source: "{{ config_dir }}/analyzer/"
+        target: "{{ config_dir }}"
+      - type: bind
+        source: "{{ log_dir }}/analyzer"
+        target: "{{ log_dir }}"
+    command: "/root/skydive analyzer --listen 0.0.0.0:{{ analyzer_port }}"
+    privileged: yes
+    state: started
+    restart: yes
