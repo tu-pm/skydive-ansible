@@ -2,8 +2,8 @@
 config_dir: "/etc/skydive"
 log_dir: "/var/log/skydive"
 log_level: "INFO"
-skydive_image: 10.240.201.50:8890/visualizer/skydive
-skydive_ui_image: 10.240.201.50:8890/visualizer/skydive_ui
+skydive_image: nexus.5f.cloud:8890/visualizer/skydive
+skydive_ui_image: nexus.5f.cloud:8890/visualizer/skydive_ui
 
 # Analyzer Configuration
 analyzer_port: 8304
@@ -11,13 +11,17 @@ analyzer_port: 8304
 # Docker Configuration
 docker_proc_mount: "/host/proc"
 
-# SNMP Configuration
-snmp_community: "public"
-snmp_polling_interval: 300
-
-# Openstack Keystone authentication
-keystone_auth_url: "http://10.60.17.231:5000"
+# Neutron authentication
+keystone_auth_url: "http://10.240.201.118:5000"
 keystone_tenant_name: "admin"
 keystone_region_name: "RegionOne"
 keystone_domain_name: "Default"
 openstack_password_prompt: "no"
+
+# LLDP configuration
+ignore_dcbx: "true"
+
+# SNMP Configuration
+snmp_community: "public"
+snmp_polling_interval: 300
+
