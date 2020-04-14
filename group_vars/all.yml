@@ -19,7 +19,10 @@ keystone_domain_name: "Default"
 openstack_password_prompt: "no"
 
 # LLDP configuration
-ignore_dcbx: "true"
+lldp_interfaces: "[]"
+lldp_ignore_dcbx: "true"
+lldp_disable_after: "30m"
+lldp_remove_after: "2160m"
 
 # SNMP Configuration
 snmp_community: "public"

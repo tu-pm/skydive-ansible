@@ -10,7 +10,11 @@ agent:
 {% endif %}
 {% if "lldp" in agent_probes %}
     lldp:
-      ignore_dcbx: "{{ ignore_dcbx }}"
+      interfaces: "{{ lldp_interfaces }}"
+      ignore_dcbx: "{{ lldp_ignore_dcbx }}"
+      disable_after: "{{ lldp_disable_after }}"
+      remove_after: "{{ lldp_remove_after }}"
+
 {% endif %}
 {% if "neutron" in agent_probes %}
     neutron:
