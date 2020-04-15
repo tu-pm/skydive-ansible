@@ -14,7 +14,7 @@
         source: "{{ config_dir }}/agent/"
         target: "{{ config_dir }}"
       - type: bind
-        source: "{{ log_dir }}/agent"
+        source: "{{ log_dir }}/agent/"
         target: "{{ log_dir }}"
       - type: bind
         source: /etc/localtime

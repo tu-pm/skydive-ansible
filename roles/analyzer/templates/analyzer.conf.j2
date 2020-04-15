@@ -5,20 +5,20 @@ http:
     bulk_maxmsgs: 200
     bulk_maxdelay: 5
     queue_size: 15000
-logging:
-  level: INFO
-  backends:
-    - file
-  file:
-  path: "{{ log_dir }}/skydive-analyzer.log"
 analyzer:
   topology:
     probes:
 {% for probe in analyzer_probes %}
-      -  {{ probe }}
+      - {{ probe }}
 {% endfor %}
 {% if "snmp" in analyzer_probes %}
     snmp:
       community: {{ snmp_community }}
       interval: {{ snmp_polling_interval }}
 {% endif %}
+logging:
+  level: INFO
+  backends:
+    - file
+  file:
+    path: "{{ log_dir }}/skydive-analyzer.log"

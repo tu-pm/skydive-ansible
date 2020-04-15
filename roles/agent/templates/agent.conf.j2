@@ -2,7 +2,7 @@ agent:
   topology:
     probes:
 {% for probe in agent_probes %}
-      -  {{ probe }}
+      - {{ probe }}
 {% endfor %}
 {% if "docker" in agent_probes %}
     docker:
