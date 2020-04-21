@@ -17,7 +17,7 @@ analyzer:
       interval: {{ snmp_polling_interval }}
 {% endif %}
 logging:
-  level: INFO
+  level: {{ log_level }}
   backends:
     - file
   file:

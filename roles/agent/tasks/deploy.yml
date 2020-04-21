@@ -7,7 +7,7 @@
   docker_container:
     name: skydive_agent
     image: "{{ skydive_image }}"
-    pull: yes
+    pull: "{{ pull_image }}"
     network_mode: host
     mounts:
       - type: bind

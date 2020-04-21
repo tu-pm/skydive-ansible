@@ -3,7 +3,7 @@
   docker_container:
     name: skydive_ui
     image: "{{ skydive_ui_image }}"
-    pull: yes
+    pull: "{{ pull_image }}"
     network_mode: host
     state: started
     restart: yes

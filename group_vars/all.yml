@@ -1,9 +1,10 @@
 ---
 config_dir: "/etc/skydive"
 log_dir: "/var/log/skydive"
-log_level: "INFO"
-skydive_image: nexus.5f.cloud:8890/visualizer/skydive
-skydive_ui_image: nexus.5f.cloud:8890/visualizer/skydive_ui
+log_level: "DEBUG"
+skydive_image: 10.240.201.50:8890/visualizer/skydive
+skydive_ui_image: 10.240.201.50:8890/visualizer/skydive_ui
+pull_image: "yes"
 
 # Analyzer Configuration
 analyzer_port: 8304
@@ -21,9 +22,9 @@ openstack_password_prompt: "no"
 # LLDP configuration
 lldp_interfaces: ""
 lldp_ignore_dcbx: "true"
-lldp_disable_after: "30m"
-lldp_remove_after: "2160m"
+lldp_timeout: "1m"
+lldp_interval: "30s"
 
 # SNMP Configuration
 snmp_community: "public"
-snmp_polling_interval: 300
+snmp_polling_interval: 10s
