@@ -6,6 +6,9 @@ http:
     bulk_maxdelay: 5
     queue_size: 15000
 analyzer:
+  auth:
+    api:
+      backend: mykeystone
   topology:
     probes:
 {% for probe in analyzer_probes %}
@@ -22,3 +25,10 @@ logging:
     - file
   file:
     path: "{{ log_dir }}/skydive-analyzer.log"
+auth:
+  mykeystone:
+    type: keystone
+    auth_url: "{{keystone_auth_url}}/v3"
+    tenant_name: admin
+    domain_name: Default
+    role: admin
