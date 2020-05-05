@@ -6,8 +6,12 @@ skydive_image: 10.240.201.50:8890/visualizer/skydive
 skydive_ui_image: 10.240.201.50:8890/visualizer/skydive_ui
 pull_image: "yes"
 
+# Webui Configuration
+webui_port: 8301
+
 # Analyzer Configuration
 analyzer_port: 8304
+analyzer_address: 10.60.17.243
 
 # Docker Configuration
 docker_proc_mount: "/host/proc"

@@ -1,0 +1,17 @@
+---
+- name: Generate configuration file
+  template:
+    src: nginx.conf.j2
+    dest: "{{ config_dir }}/webui/nginx.conf"
+- name: Run webui
+  docker_container:
+    name: skydive_ui
+    image: "{{ skydive_ui_image }}"
+    pull: "{{ pull_image }}"
+    network_mode: host
+    mounts:
+      - type: bind
+        source: "{{ config_dir }}/webui/nginx.conf"
+        target: "/etc/nginx/nginx.conf"
+    state: started
+    restart: yes

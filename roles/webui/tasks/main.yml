@@ -1,9 +1,3 @@
 ---
-- name: Run webui
-  docker_container:
-    name: skydive_ui
-    image: "{{ skydive_ui_image }}"
-    pull: "{{ pull_image }}"
-    network_mode: host
-    state: started
-    restart: yes
+- include: "precheck.yml"
+- include: "deploy.yml"
