@@ -13,7 +13,8 @@ http {
         }
 
         location /proxy  {
-            proxy_pass http://{{ analyzer_address }}:{{ analyzer_port }}/;
+            rewrite /proxy/(.*) /$1  break;
+            proxy_pass http://{{ analyzer_address }}:{{ analyzer_port }};
         }
 
         location /ws {
