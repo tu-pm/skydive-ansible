@@ -1,0 +1,3 @@
+---
+- include: "precheck.yml"
+- include: "logrotate.yml"

@@ -15,3 +15,4 @@
         target: "/etc/nginx/nginx.conf"
     state: started
     restart: yes
+    restart_policy: always

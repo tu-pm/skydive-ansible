@@ -1,4 +1,10 @@
 ---
+- name: Run common tasks
+  hosts: all
+  gather_facts: no
+  roles:
+    - { role: common, tags: always }
+
 
 - name: Install Skydive Agent
   hosts: agent

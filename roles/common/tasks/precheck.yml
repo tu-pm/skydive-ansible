@@ -1,0 +1,5 @@
+---
+- name: Create Skydive' log directory
+  file:
+    name: "{{ log_dir }}"
+    state: directory

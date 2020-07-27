@@ -1,0 +1,19 @@
+---
+- name: Run logrotate container
+  docker_container:
+    name: skydive_logrotate
+    image: "{{ skydive_logrotate_image }}"
+    pull: "{{ pull_image }}"
+    network_mode: host
+    env:
+      LOGS_DIRECTORIES: "{{ log_dir }}"
+      LOGROTATE_INTERVAL: "{{ logrotate_interval }}"
+      LOGROTATE_COPIES: "{{ logrotate_copies | quote}}"
+    mounts:
+      - type: bind
+        source: "{{ log_dir }}"
+        target: "{{ log_dir }}"
+    privileged: yes
+    state: started
+    restart: yes
+    restart_policy: always

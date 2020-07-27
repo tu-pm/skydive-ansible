@@ -30,3 +30,4 @@
     privileged: yes
     state: started
     restart: yes
+    restart_policy: always

@@ -1,23 +1,30 @@
 ---
 config_dir: "/etc/skydive"
-log_dir: "/var/log/skydive"
-log_level: "DEBUG"
+
+# Images
 skydive_image: 10.240.201.50:8890/visualizer/skydive
 skydive_ui_image: 10.240.201.50:8890/visualizer/skydive_ui
-pull_image: "yes"
+skydive_logrotate_image: 10.240.201.50:8890/visualizer/skydive_logrotate
+pull_image: "no"
+
+# Logs
+log_dir: "/var/log/skydive"
+log_level: "DEBUG"
+logrotate_interval: "weekly"
+logrotate_copies: 6
 
 # Webui Configuration
 webui_port: 8301
 
 # Analyzer Configuration
 analyzer_port: 8304
-analyzer_address: 10.60.17.243
+analyzer_address: 10.61.123.211
 
 # Docker Configuration
 docker_proc_mount: "/host/proc"
 
 # Neutron authentication
-keystone_auth_url: "http://10.240.201.118:5000"
+keystone_auth_url: "http://10.240.201.100:5000"
 keystone_tenant_name: "admin"
 keystone_region_name: "RegionOne"
 keystone_domain_name: "Default"
